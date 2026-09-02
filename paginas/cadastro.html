@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar conta — Cortiça</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+<header class="auth-header">
+  <nav class="wrap">
+    <a class="brand" href="../index.html#top">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C9 6 6 9 6 13a6 6 0 0012 0c0-4-3-7-6-11z" fill="#7c8f5b"/>
+        <circle cx="12" cy="14" r="2.4" fill="#182c20"/>
+      </svg>
+      Cortiça
+    </a>
+  </nav>
+</header>
+
+<main class="auth-shell">
+  <div class="auth-card">
+    <a class="auth-back" href="../index.html#top">&larr; Voltar para o site</a>
+    <div class="eyebrow">Central de dados</div>
+    <h1>Criar sua conta</h1>
+    <p class="auth-lede">Cadastre-se para vincular seus protótipos e acompanhar os dados em tempo real.</p>
+
+    <form id="signupForm" novalidate>
+      <div class="field" id="signupNameField">
+        <label for="signupName">Nome</label>
+        <input type="text" id="signupName" name="name" autocomplete="name" placeholder="Seu nome completo">
+        <div class="field-error">Digite seu nome.</div>
+      </div>
+
+      <div class="field" id="signupEmailField">
+        <label for="signupEmail">E-mail</label>
+        <input type="email" id="signupEmail" name="email" autocomplete="email" placeholder="voce@exemplo.com">
+        <div class="field-error">Digite um e-mail válido.</div>
+      </div>
+
+      <div class="field" id="signupPasswordField">
+        <label for="signupPassword">Senha</label>
+        <div class="password-wrap">
+          <input type="password" id="signupPassword" name="password" autocomplete="new-password" placeholder="••••••••">
+          <button type="button" class="password-toggle" id="signupPasswordToggle">mostrar</button>
+        </div>
+        <div class="field-hint">Mínimo de 6 caracteres.</div>
+        <div class="field-error">A senha precisa ter pelo menos 6 caracteres.</div>
+      </div>
+
+      <div class="field" id="signupConfirmField">
+        <label for="signupConfirm">Confirmar senha</label>
+        <input type="password" id="signupConfirm" name="confirm" autocomplete="new-password" placeholder="••••••••">
+        <div class="field-error">As senhas não coincidem.</div>
+      </div>
+
+      <button type="submit" class="auth-submit">Criar conta</button>
+
+      <div class="auth-form-message" id="signupMessage"></div>
+    </form>
+
+    <div class="auth-switch">
+      Já tem conta? <a href="login.html">Entrar</a>
+    </div>
+  </div>
+</main>
+
+<script src="../js/auth.js"></script>
+</body>
+</html>

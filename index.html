@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cortiça — Bioindicadores da qualidade do ar com Arduino e robótica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C9 6 6 9 6 13a6 6 0 0012 0c0-4-3-7-6-11z" fill="#7c8f5b"/>
+        <circle cx="12" cy="14" r="2.4" fill="#182c20"/>
+      </svg>
+      Cortiça
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#problema">O problema</a>
+      <a href="#liquens">Por que líquens</a>
+      <a href="#dispositivo">O protótipo</a>
+      <a href="#central">A central</a>
+      <a href="#sobre">Sobre</a>
+      <a class="btn btn-ghost" href="paginas/login.html" style="margin-left:8px;">Entrar</a>
+      <a class="btn btn-primary" href="paginas/cadastro.html">Criar conta</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="kicker">Iniciação científica GEMAT · SESI Anísio Teixeira</div>
+        <h1>O ar da sua rua, lido por sensores e confirmado por líquens</h1>
+        <p class="lede">Cortiça é um protótipo automatizado de monitoramento da qualidade do ar, construído com Arduino e sensores de baixo custo, que usa líquens como bioindicador natural para confirmar o que a eletrônica mede. É a pesquisa "Análise dos bioindicadores da qualidade do ar por meio de Arduino e robótica", em desenvolvimento na Bahia.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#dispositivo">Ver como funciona</a>
+          <a class="btn btn-ghost" href="#central">Conhecer a central de dados</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg class="blob-anim" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de um líquen sobre um ramo, ao lado de um ícone de sinal">
+          <path d="M200 40c60 40 110 70 110 140 0 66-49 120-110 120S90 246 90 180c0-70 50-100 110-140z" fill="#e4e2d0" stroke="#c9c6ae"/>
+          <g>
+            <ellipse cx="150" cy="190" rx="34" ry="24" fill="#7c8f5b" opacity="0.85"/>
+            <ellipse cx="200" cy="215" rx="44" ry="30" fill="#95a86f" opacity="0.9"/>
+            <ellipse cx="250" cy="180" rx="30" ry="22" fill="#5f7248" opacity="0.85"/>
+            <ellipse cx="205" cy="165" rx="26" ry="18" fill="#b3803a" opacity="0.55"/>
+          </g>
+          <g stroke="#182c20" stroke-width="2" fill="none">
+            <path d="M120 260 Q200 300 280 260" />
+          </g>
+          <g>
+            <circle cx="300" cy="90" r="4" fill="#182c20"/>
+            <path d="M300 90 q0 -34 -20 -54" stroke="#182c20" stroke-width="2" fill="none"/>
+            <path d="M285 40 q-8 8 -6 20" stroke="#182c20" stroke-width="1.6" fill="none"/>
+            <path d="M300 34 q2 10 -2 22" stroke="#182c20" stroke-width="1.6" fill="none"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section id="problema" class="section-band">
+    <div class="wrap two-col">
+      <div>
+        <div class="eyebrow">O problema</div>
+        <h2>O Nordeste é a região que menos sabe o que respira</h2>
+        <p>O Brasil tem 430 estações de monitoramento da qualidade do ar, mas elas são caras e concentradas: 80,3% ficam no Sudeste. A região Nordeste, onde moramos, tem apenas 4 — menos de 2% do total (Vormittag et al., 2021). Para efeito de comparação, o relatório da IQAir de 2023 contabilizou mais de 30 mil estações espalhadas pelo mundo: o Nordeste sozinho representa uma fração ínfima disso.</p>
+        <div class="stat-block">
+          <div class="stat"><div class="num">430</div><div class="label">estações de monitoramento no Brasil, das quais 371 estão ativas</div></div>
+          <div class="stat"><div class="num">4</div><div class="label">estações ativas em todo o Nordeste — 1,1% do total nacional</div></div>
+        </div>
+      </div>
+      <div class="lichen-figure">
+        <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico comparando o número de estações de monitoramento da qualidade do ar: mais de 30 mil no mundo, 430 no Brasil e 4 no Nordeste, em escala logarítmica">
+          <!-- log scale: 1 -> x=90, 10 -> x=150, 100 -> x=210, 1000 -> x=270, 10000 -> x=330 (60px/decade) -->
+          <!-- bar x-start fixed at 90 (value=1) -->
+          <line x1="90" y1="20" x2="90" y2="225" stroke="#c9c6ae" stroke-width="1"/>
+          <text x="90" y="238" text-anchor="middle" fill="#8a8874" font-family="IBM Plex Mono, monospace" font-size="9">1</text>
+          <text x="150" y="238" text-anchor="middle" fill="#8a8874" font-family="IBM Plex Mono, monospace" font-size="9">10</text>
+          <text x="210" y="238" text-anchor="middle" fill="#8a8874" font-family="IBM Plex Mono, monospace" font-size="9">100</text>
+          <text x="270" y="238" text-anchor="middle" fill="#8a8874" font-family="IBM Plex Mono, monospace" font-size="9">1.000</text>
+          <text x="330" y="238" text-anchor="middle" fill="#8a8874" font-family="IBM Plex Mono, monospace" font-size="9">10.000+</text>
+
+          <!-- Nordeste: 4 stations -> log10(4)=0.60 -> x=90+0.60*60=126 -->
+          <text x="8" y="52" fill="#46523f" font-family="Work Sans, sans-serif" font-size="12">Nordeste</text>
+          <rect x="90" y="38" width="36" height="26" fill="#b3803a"/>
+          <text x="132" y="56" fill="#16211a" font-family="IBM Plex Mono, monospace" font-size="12">4</text>
+
+          <!-- Brasil: 430 stations -> log10(430)=2.63 -> x=90+2.63*60=248 -->
+          <text x="8" y="118" fill="#46523f" font-family="Work Sans, sans-serif" font-size="12">Brasil</text>
+          <rect x="90" y="104" width="158" height="26" fill="#24402f"/>
+          <text x="254" y="122" fill="#16211a" font-family="IBM Plex Mono, monospace" font-size="12">430</text>
+
+          <!-- Mundo: 30.000+ stations -> log10(30000)=4.48 -> x=90+4.48*60=359, clamp to 330 -->
+          <text x="8" y="184" fill="#46523f" font-family="Work Sans, sans-serif" font-size="12">Mundo</text>
+          <rect x="90" y="170" width="240" height="26" fill="#7c8f5b"/>
+          <text x="290" y="188" fill="#16211a" font-family="IBM Plex Mono, monospace" font-size="12">30.000+</text>
+
+          <text x="90" y="255" fill="#8a8874" font-family="Work Sans, sans-serif" font-size="9">Escala logarítmica · fontes: IQAir (2023) e Vormittag et al. (2021)</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE LIQUENS -->
+  <section id="liquens">
+    <div class="wrap two-col">
+      <div class="lichen-figure" style="order:2;">
+        <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de líquen com formas orgânicas">
+          <ellipse cx="150" cy="150" rx="90" ry="60" fill="#e4e2d0"/>
+          <ellipse cx="110" cy="140" rx="34" ry="24" fill="#5f7248"/>
+          <ellipse cx="170" cy="160" rx="40" ry="28" fill="#7c8f5b"/>
+          <ellipse cx="150" cy="115" rx="24" ry="16" fill="#b3803a" opacity="0.7"/>
+          <ellipse cx="205" cy="125" rx="20" ry="14" fill="#95a86f"/>
+        </svg>
+      </div>
+      <div style="order:1;">
+        <div class="eyebrow">Por que líquens</div>
+        <h2>Um bioindicador que a ciência já confia há décadas</h2>
+        <p>Líquens são a associação simbiótica entre um fungo e uma alga ou cianobactéria. Sem raízes nem cutícula protetora, absorvem umidade e substâncias direto do ar por toda a sua superfície — o chamado talo. Isso os torna extremamente sensíveis aos mesmos poluentes que o protótipo mede: SO₂, NOₓ, PM2.5 e PM10. A exposição a esses poluentes altera o pH da superfície do líquen, entope seus poros e muda sua cor.</p>
+        <p>No Cortiça, uma placa com líquens fica exposta ao lado dos sensores eletrônicos, e um sensor de cor acompanha o talo continuamente. Quando o sinal biológico (a mudança de cor) e o dado do sensor eletrônico apontam na mesma direção, a leitura ganha uma camada extra de confiança — validação cruzada entre eletrônica e biologia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPOSITIVO -->
+  <section id="dispositivo" class="device-section">
+    <div class="wrap">
+      <div class="eyebrow">O protótipo</div>
+      <h2>Seis partes trabalhando juntas, dentro de uma case impressa em 3D</h2>
+      <p>O protótipo é montado com componentes de plataforma IDE Arduino, testados antes em simulação (Tinkercad e Wokwi) e depois na construção física. Cada parte tem uma função clara:</p>
+
+      <div class="device-grid">
+        <div class="device-diagram">
+          <img src="assets/prototipo-referencia.png" alt="Protótipo sugerido: caixa protetora transparente com painel solar, antena Wi-Fi, sensores, Arduino, e uma placa de líquens fixada na base, sobre uma estrutura de fixação para postes ou paredes" style="width:100%; height:auto; border-radius:4px; border:1px solid var(--panel-line);">
+          <p style="color:#8ea092; font-size:0.82rem; margin-top:10px;">Protótipo sugerido para a montagem final — a estrutura de fixação permite instalar o dispositivo em postes ou paredes.</p>
+        </div>
+
+        <div class="component-list">
+          <div class="component">
+            <div class="mark">01</div>
+            <div><h3>Sensores de poluentes</h3><p>MQ-136 mede SO₂, MQ-135 mede NOₓ e o PMS5003 mede material particulado (PM2.5 e PM10) — os mesmos poluentes que afetam os líquens.</p></div>
+          </div>
+          <div class="component">
+            <div class="mark">02</div>
+            <div><h3>Sensor de cor TCS34725</h3><p>Acompanha a placa de líquens e detecta mudanças de cor causadas pela exposição ao SO₂, convertendo a leitura em valores RGB + C.</p></div>
+          </div>
+          <div class="component">
+            <div class="mark">03</div>
+            <div><h3>Arduino</h3><p>O núcleo do sistema: lê os sensores, aplica os limiares de qualidade do ar e decide o que mostrar nos indicadores.</p></div>
+          </div>
+          <div class="component">
+            <div class="mark">04</div>
+            <div><h3>Painel LCD I2C 16x2 e LEDs</h3><p>O LCD mostra os dados numéricos para leitura precisa; os LEDs vermelho e verde dão um alerta simples de "ar estável" ou "ar instável".</p></div>
+          </div>
+          <div class="component">
+            <div class="mark">05</div>
+            <div><h3>Case impressa em 3D</h3><p>Estrutura em termoplástico (impressão 3D), escolhida por resistência, durabilidade e custo-benefício para instalação ao ar livre.</p></div>
+          </div>
+          <div class="component">
+            <div class="mark">06</div>
+            <div><h3>Placa de líquens</h3><p>Serve como referência biológica, exposta ao ambiente lado a lado com os sensores eletrônicos.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENTRAL / DASHBOARD -->
+  <section id="central" class="section-band">
+    <div class="wrap two-col">
+      <div class="preview-copy">
+        <div class="eyebrow">A central</div>
+        <h2>Todos os seus protótipos, numa única conta</h2>
+        <p>Depois de instalado, cada protótipo é vinculado à sua conta com um código próprio. Se você tiver mais de um — um em casa, outro no trabalho, outro emprestado para um vizinho — todos aparecem separados, com histórico e gráficos individuais.</p>
+        <p>Os dados chegam por Wi-Fi assim que são medidos, então a central sempre mostra a leitura mais recente, além do histórico dos últimos dias.</p>
+        <p style="font-size:0.88rem; border-top:1px solid var(--line); padding-top:14px;"><strong>Nota técnica:</strong> os testes atuais usam Arduino sem conectividade. Para alimentar essa central, o próximo protótipo físico vai precisar de um módulo Wi-Fi (como um ESP32 no lugar do Arduino, ou um shield ESP8266) para enviar as leituras à nuvem.</p>
+        <a class="btn btn-primary" href="paginas/cadastro.html" style="margin-top:8px; align-self:flex-start;">Cadastrar um protótipo</a>
+      </div>
+
+      <div class="dash-mock">
+        <div class="dash-topbar">
+          <div class="title">Protótipo — Quintal</div>
+          <div class="pill">ao vivo</div>
+        </div>
+        <div class="dash-cards">
+          <div class="dash-card"><div class="k">PM2.5</div><div class="v mono" id="pm25">18 µg/m³</div></div>
+          <div class="dash-card"><div class="k">PM10</div><div class="v mono" id="pm10">28 µg/m³</div></div>
+          <div class="dash-card"><div class="k">SO₂</div><div class="v mono" id="co2">12 ppb</div></div>
+          <div class="dash-card"><div class="k">NOₓ</div><div class="v mono" id="temp">8 ppb</div></div>
+        </div>
+        <div class="dash-chart">
+          <svg viewBox="0 0 460 120" preserveAspectRatio="none">
+            <polyline points="0,90 40,80 80,85 120,60 160,65 200,40 240,50 280,35 320,45 360,30 400,38 440,25"
+              fill="none" stroke="#24402f" stroke-width="2.5"/>
+            <polyline points="0,90 40,80 80,85 120,60 160,65 200,40 240,50 280,35 320,45 360,30 400,38 440,25 440,120 0,120"
+              fill="#24402f" opacity="0.08" stroke="none"/>
+          </svg>
+        </div>
+        <div class="dash-devices">
+          <span class="dash-chip active">Quintal</span>
+          <span class="dash-chip">Varanda</span>
+          <span class="dash-chip">+ Adicionar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO COMEÇAR -->
+  <section id="comecar">
+    <div class="wrap">
+      <div class="eyebrow">Como começar</div>
+      <h2>Três passos até acompanhar seu primeiro protótipo</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Crie sua conta</h3>
+          <p>Cadastro simples com e-mail e senha, sem custo durante a fase de pesquisa.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Vincule o protótipo</h3>
+          <p>Informe o código do dispositivo para associá-lo à sua conta.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Acompanhe os dados</h3>
+          <p>Veja leituras em tempo real e o histórico direto na central, de qualquer lugar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section-band">
+    <div class="wrap">
+      <div class="about-box">
+        <div>
+          <div class="eyebrow">Sobre o projeto</div>
+          <h2 style="max-width:26ch;">Um projeto de iniciação científica, pensado para crescer</h2>
+          <p>Cortiça é desenvolvido por Gabriel, Vitória e Bryan, estudantes da Escola SESI Anísio Teixeira em Vitória da Conquista (BA), como parte da iniciação científica do GEMAT — Grupo de Pesquisa em Matemática e suas Tecnologias. O projeto une programação e biologia, e está alinhado aos Objetivos de Desenvolvimento Sustentável da ONU: saúde e bem-estar (ODS 3), cidades sustentáveis (ODS 11) e ação climática (ODS 13). Se os testes de campo confirmarem os resultados, a ideia é abrir o cadastro para mais protótipos e mais pessoas interessadas em saber o que respiram.</p>
+        </div>
+        <a class="btn btn-ghost" href="#" style="white-space:nowrap;">Falar com a equipe</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="wrap">
+      <div class="eyebrow">Comece agora</div>
+      <h2>Quer acompanhar o ar da sua região?</h2>
+      <p>Crie uma conta para acessar a central assim que o seu protótipo estiver pronto, ou entre em contato para saber mais sobre o projeto.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="paginas/cadastro.html">Criar conta</a>
+        <a class="btn btn-ghost" href="paginas/login.html">Entrar</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">Cortiça</div>
+    <div class="fmeta">GEMAT · Escola SESI Anísio Teixeira · Vitória da Conquista, BA — 2026</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

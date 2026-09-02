@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — Cortiça</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+<header class="auth-header">
+  <nav class="wrap">
+    <a class="brand" href="../index.html#top">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C9 6 6 9 6 13a6 6 0 0012 0c0-4-3-7-6-11z" fill="#7c8f5b"/>
+        <circle cx="12" cy="14" r="2.4" fill="#182c20"/>
+      </svg>
+      Cortiça
+    </a>
+  </nav>
+</header>
+
+<main class="auth-shell">
+  <div class="auth-card">
+    <a class="auth-back" href="../index.html#top">&larr; Voltar para o site</a>
+    <div class="eyebrow">Central de dados</div>
+    <h1>Entrar na sua conta</h1>
+    <p class="auth-lede">Acompanhe as leituras dos seus protótipos em tempo real.</p>
+
+    <form id="loginForm" novalidate>
+      <div class="field" id="loginEmailField">
+        <label for="loginEmail">E-mail</label>
+        <input type="email" id="loginEmail" name="email" autocomplete="email" placeholder="voce@exemplo.com">
+        <div class="field-error">Digite um e-mail válido.</div>
+      </div>
+
+      <div class="field" id="loginPasswordField">
+        <label for="loginPassword">Senha</label>
+        <div class="password-wrap">
+          <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="••••••••">
+          <button type="button" class="password-toggle" id="loginPasswordToggle">mostrar</button>
+        </div>
+        <div class="field-error">A senha precisa ter pelo menos 6 caracteres.</div>
+      </div>
+
+      <button type="submit" class="auth-submit">Entrar</button>
+
+      <div class="auth-form-message" id="loginMessage"></div>
+    </form>
+
+    <div class="auth-switch">
+      Ainda não tem conta? <a href="cadastro.html">Criar conta</a>
+    </div>
+  </div>
+</main>
+
+<script src="../js/auth.js"></script>
+</body>
+</html>
