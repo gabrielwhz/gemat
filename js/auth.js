@@ -1,10 +1,8 @@
 /*
-  Lógica das telas de login e cadastro.
+  Lógica das telas de login e cadastro, usando Supabase Auth.
 
-  Por enquanto, os formulários NÃO enviam dados a lugar nenhum — só fazem
-  validação no navegador e mostram uma mensagem. Os pontos marcados com
-  "TODO FIREBASE" são exatamente onde entra o código do Firebase quando
-  configurarmos o Authentication (próximo passo do roteiro).
+  Depende de js/supabase-client.js estar carregado ANTES deste arquivo
+  (ele expõe a variável global `supabaseClient`).
 */
 
 function showMessage(el, text, type) {
@@ -34,6 +32,22 @@ function setupPasswordToggle(buttonEl, inputEl) {
   });
 }
 
+// Traduz as mensagens de erro mais comuns do Supabase Auth para PT-BR
+function traduzErroSupabase(error) {
+  const msg = (error && error.message) || '';
+  if (msg.includes('Invalid login credentials')) return 'E-mail ou senha incorretos.';
+  if (msg.includes('User already registered')) return 'Já existe uma conta com esse e-mail.';
+  if (msg.includes('Password should be at least')) return 'A senha precisa ter pelo menos 6 caracteres.';
+  if (msg.includes('Email not confirmed')) return 'Confirme seu e-mail antes de entrar (verifique sua caixa de entrada).';
+  if (msg.includes('rate limit')) return 'Muitas tentativas seguidas. Aguarde um instante e tente de novo.';
+  return 'Não foi possível concluir. Tente novamente em instantes.';
+}
+
+function setLoading(button, isLoading, defaultText, loadingText) {
+  button.disabled = isLoading;
+  button.textContent = isLoading ? loadingText : defaultText;
+}
+
 /* ---------- LOGIN ---------- */
 function initLoginForm() {
   const form = document.getElementById('loginForm');
@@ -44,11 +58,12 @@ function initLoginForm() {
   const passwordField = document.getElementById('loginPasswordField');
   const passwordInput = document.getElementById('loginPassword');
   const message = document.getElementById('loginMessage');
+  const submitBtn = form.querySelector('.auth-submit');
 
   const toggleBtn = document.getElementById('loginPasswordToggle');
   if (toggleBtn) setupPasswordToggle(toggleBtn, passwordInput);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearFieldError(emailField);
     clearFieldError(passwordField);
@@ -64,15 +79,32 @@ function initLoginForm() {
     }
     if (hasError) return;
 
-    // TODO FIREBASE: substituir o bloco abaixo por
-    // signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    //   .then(...) redireciona para paginas/dashboard.html
-    //   .catch(...) mostra erro real (senha incorreta, usuário não existe, etc.)
-    showMessage(
-      message,
-      'Formulário validado. A conexão com o login real ainda não foi configurada.',
-      'info'
-    );
+    setLoading(submitBtn, true, 'Entrar', 'Entrando...');
+
+    try {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: emailInput.value.trim(),
+        password: passwordInput.value
+      });
+
+      if (error) {
+        showMessage(message, traduzErroSupabase(error), 'error');
+        return;
+      }
+
+      // Login OK — redireciona para a central de dados.
+      // (dashboard.html ainda não existe: será criado no próximo passo do roteiro)
+      window.location.href = 'dashboard.html';
+    } catch (err) {
+      console.error('Erro inesperado no login:', err);
+      showMessage(
+        message,
+        'Não foi possível conectar ao Supabase. Confira o console (F12) e se a URL/chave em supabase-client.js estão corretas.',
+        'error'
+      );
+    } finally {
+      setLoading(submitBtn, false, 'Entrar', 'Entrando...');
+    }
   });
 }
 
@@ -90,11 +122,12 @@ function initSignupForm() {
   const confirmField = document.getElementById('signupConfirmField');
   const confirmInput = document.getElementById('signupConfirm');
   const message = document.getElementById('signupMessage');
+  const submitBtn = form.querySelector('.auth-submit');
 
   const toggleBtn = document.getElementById('signupPasswordToggle');
   if (toggleBtn) setupPasswordToggle(toggleBtn, passwordInput);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     [nameField, emailField, passwordField, confirmField].forEach(clearFieldError);
 
@@ -117,15 +150,39 @@ function initSignupForm() {
     }
     if (hasError) return;
 
-    // TODO FIREBASE: substituir o bloco abaixo por
-    // createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    //   .then(...) salva o nome no perfil / Firestore e redireciona para o login ou dashboard
-    //   .catch(...) mostra erro real (e-mail já cadastrado, senha fraca, etc.)
-    showMessage(
-      message,
-      'Formulário validado. A conexão com o cadastro real ainda não foi configurada.',
-      'info'
-    );
+    setLoading(submitBtn, true, 'Criar conta', 'Criando conta...');
+
+    try {
+      const { data, error } = await supabaseClient.auth.signUp({
+        email: emailInput.value.trim(),
+        password: passwordInput.value,
+        options: {
+          data: { full_name: nameInput.value.trim() }
+        }
+      });
+
+      if (error) {
+        showMessage(message, traduzErroSupabase(error), 'error');
+        return;
+      }
+
+      // Por padrão, o Supabase exige confirmação por e-mail antes do primeiro login.
+      showMessage(
+        message,
+        'Conta criada! Verifique seu e-mail para confirmar antes de entrar.',
+        'info'
+      );
+      form.reset();
+    } catch (err) {
+      console.error('Erro inesperado no cadastro:', err);
+      showMessage(
+        message,
+        'Não foi possível conectar ao Supabase. Confira o console (F12) e se a URL/chave em supabase-client.js estão corretas.',
+        'error'
+      );
+    } finally {
+      setLoading(submitBtn, false, 'Criar conta', 'Criando conta...');
+    }
   });
 }
 
