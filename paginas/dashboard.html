@@ -15,25 +15,34 @@
 <body>
 
 <header class="auth-header">
-  <nav class="wrap">
+  <nav class="wrap dashboard-nav">
     <a class="brand" href="../index.html#top">
-      <img src="../assets/icon-ecobreath.png" alt="Ícone EcoBreath" class="brand-icon">
+      <img src="../assets/icon-ecobreath.svg" alt="Ícone EcoBreath" class="brand-icon">
       EcoBreath
     </a>
+
+    <div class="user-menu" id="userMenu">
+      <button class="user-menu-trigger" id="userMenuTrigger" aria-haspopup="true" aria-expanded="false">
+        <span class="user-menu-avatar" id="accountAvatar">?</span>
+        <span class="user-menu-name" id="accountFirstName">Carregando…</span>
+        <svg class="user-menu-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="user-menu-dropdown" id="userMenuDropdown">
+        <div class="user-menu-header">
+          <div class="account-name" id="accountName">Carregando…</div>
+          <div class="account-email" id="accountEmail"></div>
+        </div>
+        <button class="user-menu-logout" id="logoutBtn">Sair da conta</button>
+      </div>
+    </div>
   </nav>
 </header>
 
 <main class="dashboard-shell">
   <div class="wrap">
-
-    <section class="account-card">
-      <div class="account-avatar" id="accountAvatar">?</div>
-      <div class="account-info">
-        <div class="account-name" id="accountName">Carregando…</div>
-        <div class="account-email" id="accountEmail"></div>
-      </div>
-      <button class="btn btn-ghost" id="logoutBtn">Sair da conta</button>
-    </section>
 
     <div class="dashboard-head">
       <div>

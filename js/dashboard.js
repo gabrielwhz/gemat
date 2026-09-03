@@ -37,15 +37,44 @@ function renderPrototipoCard(prototipo, leitura) {
   return card;
 }
 
+function setupUserMenu() {
+  const userMenu = document.getElementById('userMenu');
+  const trigger = document.getElementById('userMenuTrigger');
+  if (!userMenu || !trigger) return;
+
+  function closeMenu() {
+    userMenu.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu() {
+    const isOpen = userMenu.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+  document.addEventListener('click', (e) => {
+    if (!userMenu.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+}
+
 async function loadDashboard() {
   const welcomeTitle = document.getElementById('welcomeTitle');
   const accountAvatar = document.getElementById('accountAvatar');
+  const accountFirstName = document.getElementById('accountFirstName');
   const accountName = document.getElementById('accountName');
   const accountEmail = document.getElementById('accountEmail');
   const logoutBtn = document.getElementById('logoutBtn');
   const prototiposList = document.getElementById('prototiposList');
   const emptyState = document.getElementById('emptyState');
   const errorState = document.getElementById('errorState');
+
+  setupUserMenu();
 
   // 1. Confere se tem usuário logado. Sem sessão, manda pro login.
   const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
@@ -61,6 +90,7 @@ async function loadDashboard() {
   const firstName = displayName.split(' ')[0];
 
   welcomeTitle.textContent = 'Olá, ' + firstName;
+  accountFirstName.textContent = firstName;
   accountName.textContent = displayName;
   accountEmail.textContent = user.email;
   accountAvatar.textContent = displayName.trim().charAt(0).toUpperCase();

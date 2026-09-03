@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cortiça — Bioindicadores da qualidade do ar com Arduino e robótica</title>
+<title>EcoBreath — Bioindicadores da qualidade do ar com Arduino e robótica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -15,11 +15,8 @@
 <header>
   <nav class="wrap">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C9 6 6 9 6 13a6 6 0 0012 0c0-4-3-7-6-11z" fill="#7c8f5b"/>
-        <circle cx="12" cy="14" r="2.4" fill="#182c20"/>
-      </svg>
-      Cortiça
+      <img src="assets/icon-ecobreath.svg" alt="Ícone EcoBreath" class="brand-icon">
+      EcoBreath
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -44,31 +41,14 @@
       <div>
         <div class="kicker">Iniciação científica GEMAT · SESI Anísio Teixeira</div>
         <h1>O ar da sua rua, lido por sensores e confirmado por líquens</h1>
-        <p class="lede">Cortiça é um protótipo automatizado de monitoramento da qualidade do ar, construído com Arduino e sensores de baixo custo, que usa líquens como bioindicador natural para confirmar o que a eletrônica mede. É a pesquisa "Análise dos bioindicadores da qualidade do ar por meio de Arduino e robótica", em desenvolvimento na Bahia.</p>
+        <p class="lede">EcoBreath é um protótipo automatizado de monitoramento da qualidade do ar, construído com Arduino e sensores de baixo custo, que usa líquens como bioindicador natural para confirmar o que a eletrônica mede. É a pesquisa "Análise dos bioindicadores da qualidade do ar por meio de Arduino e robótica", em desenvolvimento na Bahia.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#dispositivo">Ver como funciona</a>
           <a class="btn btn-ghost" href="#central">Conhecer a central de dados</a>
         </div>
       </div>
       <div class="hero-art">
-        <svg class="blob-anim" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de um líquen sobre um ramo, ao lado de um ícone de sinal">
-          <path d="M200 40c60 40 110 70 110 140 0 66-49 120-110 120S90 246 90 180c0-70 50-100 110-140z" fill="#e4e2d0" stroke="#c9c6ae"/>
-          <g>
-            <ellipse cx="150" cy="190" rx="34" ry="24" fill="#7c8f5b" opacity="0.85"/>
-            <ellipse cx="200" cy="215" rx="44" ry="30" fill="#95a86f" opacity="0.9"/>
-            <ellipse cx="250" cy="180" rx="30" ry="22" fill="#5f7248" opacity="0.85"/>
-            <ellipse cx="205" cy="165" rx="26" ry="18" fill="#b3803a" opacity="0.55"/>
-          </g>
-          <g stroke="#182c20" stroke-width="2" fill="none">
-            <path d="M120 260 Q200 300 280 260" />
-          </g>
-          <g>
-            <circle cx="300" cy="90" r="4" fill="#182c20"/>
-            <path d="M300 90 q0 -34 -20 -54" stroke="#182c20" stroke-width="2" fill="none"/>
-            <path d="M285 40 q-8 8 -6 20" stroke="#182c20" stroke-width="1.6" fill="none"/>
-            <path d="M300 34 q2 10 -2 22" stroke="#182c20" stroke-width="1.6" fill="none"/>
-          </g>
-        </svg>
+        <img src="assets/logo-ecobreath.svg" alt="Logo EcoBreath — tecnologia e vida ambiental" class="hero-logo">
       </div>
     </div>
   </section>
@@ -79,7 +59,7 @@
       <div>
         <div class="eyebrow">O problema</div>
         <h2>O Nordeste é a região que menos sabe o que respira</h2>
-        <p>O Brasil tem 430 estações de monitoramento da qualidade do ar, mas elas são caras e concentradas: 80,3% ficam no Sudeste. A região Nordeste, onde moramos, tem apenas 4 — menos de 2% do total (Vormittag et al., 2021). Para efeito de comparação, o relatório da IQAir de 2023 contabilizou mais de 30 mil estações espalhadas pelo mundo: o Nordeste sozinho representa uma fração ínfima disso.</p>
+        <p>O Brasil tem 430 estações de monitoramento da qualidade do ar, mas elas são caras e concentradas, onde aproximadamente 80% ficam no Sudeste. A região Nordeste, onde o seguinte projeto é criado, tem apenas 4 delas, o que representa menos de 2% do total (Vormittag et al., 2021). Para efeito de comparação, o relatório da IQAir de 2023 contabilizou mais de 30 mil estações espalhadas pelo mundo: o Nordeste sozinho representa uma insignificante disso.</p>
         <div class="stat-block">
           <div class="stat"><div class="num">430</div><div class="label">estações de monitoramento no Brasil, das quais 371 estão ativas</div></div>
           <div class="stat"><div class="num">4</div><div class="label">estações ativas em todo o Nordeste — 1,1% do total nacional</div></div>
@@ -121,14 +101,14 @@
   <section id="liquens">
     <div class="wrap two-col">
       <div class="lichen-figure" style="order:2; flex-direction:column; gap:12px;">
-        <img src="assets/liquen-amostra.png" alt="Amostra de líquens foliosos crescendo sobre um pedaço de casca de árvore, usada como placa de referência biológica no protótipo" style="width:100%; max-width:340px; height:auto; border-radius:4px;">
-        <p style="color:var(--ink-soft); font-size:0.82rem; margin:0; text-align:center;">Amostra real usada como placa de referência no protótipo.</p>
+        <img src="assets/liquen-galho.png" alt="Líquens foliosos e crostosos crescendo sobre um galho seco" style="width:auto; max-width:220px; height:auto; border-radius:4px;">
+        <p style="color:var(--ink-soft); font-size:0.82rem; margin:0; text-align:center;">Amostra real de líquens coletada para o projeto.</p>
       </div>
       <div style="order:1;">
         <div class="eyebrow">Por que líquens</div>
         <h2>Um bioindicador que a ciência já confia há décadas</h2>
-        <p>Líquens são a associação simbiótica entre um fungo e uma alga ou cianobactéria. Sem raízes nem cutícula protetora, absorvem umidade e substâncias direto do ar por toda a sua superfície — o chamado talo. Isso os torna extremamente sensíveis aos mesmos poluentes que o protótipo mede: SO₂, NOₓ, PM2.5 e PM10. A exposição a esses poluentes altera o pH da superfície do líquen, entope seus poros e muda sua cor.</p>
-        <p>No Cortiça, uma placa com líquens fica exposta ao lado dos sensores eletrônicos, e um sensor de cor acompanha o talo continuamente. Quando o sinal biológico (a mudança de cor) e o dado do sensor eletrônico apontam na mesma direção, a leitura ganha uma camada extra de confiança — validação cruzada entre eletrônica e biologia.</p>
+        <p>Líquens são a associação simbiótica entre um fungo e uma alga ou cianobactéria. Sem raízes nem cutícula protetora, absorvem umidade e substâncias direto do ar por toda a sua superfície, nesse caso o talo. Isso os torna extremamente sensíveis aos mesmos poluentes que interferem na qualidade do ar que você respira: SO₂, NOₓ, PM2.5 e PM10. A exposição a esses poluentes altera o pH da superfície do líquen, entope seus poros e muda sua cor.</p>
+        <p>No EcoBreath, uma placa com líquens fica exposta ao lado dos sensores eletrônicos, e um sensor de cor acompanha o talo continuamente. Quando o sinal biológico (a mudança de cor) e o dado do sensor eletrônico apontam na mesma direção, a leitura ganha uma camada extra de confiança, ou seja, é uma validação cruzada entre robótica e biologia.</p>
       </div>
     </div>
   </section>
@@ -149,7 +129,7 @@
         <div class="component-list">
           <div class="component">
             <div class="mark">01</div>
-            <div><h3>Sensores de poluentes</h3><p>MQ-136 mede SO₂, MQ-135 mede NOₓ e o PMS5003 mede material particulado (PM2.5 e PM10) — os mesmos poluentes que afetam os líquens.</p></div>
+            <div><h3>Sensores de poluentes</h3><p>MQ-136 mede SO₂, MQ-135 mede NOₓ e o PMS5003 mede material particulado (PM2.5 e PM10), os mesmos poluentes que afetam os líquens.</p></div>
           </div>
           <div class="component">
             <div class="mark">02</div>
@@ -182,15 +162,14 @@
       <div class="preview-copy">
         <div class="eyebrow">A central</div>
         <h2>Todos os seus protótipos, numa única conta</h2>
-        <p>Depois de instalado, cada protótipo é vinculado à sua conta com um código próprio. Se você tiver mais de um — um em casa, outro no trabalho, outro emprestado para um vizinho — todos aparecem separados, com histórico e gráficos individuais.</p>
+        <p>Depois de instalado, cada protótipo é vinculado à sua conta com um código próprio. Se você tiver mais de um, um em casa, outro no trabalho, outro emprestado para um vizinho, todos aparecem separados, com histórico e gráficos individuais.</p>
         <p>Os dados chegam por Wi-Fi assim que são medidos, então a central sempre mostra a leitura mais recente, além do histórico dos últimos dias.</p>
-        <p style="font-size:0.88rem; border-top:1px solid var(--line); padding-top:14px;"><strong>Nota técnica:</strong> os testes atuais usam Arduino sem conectividade. Para alimentar essa central, o próximo protótipo físico vai precisar de um módulo Wi-Fi (como um ESP32 no lugar do Arduino, ou um shield ESP8266) para enviar as leituras à nuvem.</p>
         <a class="btn btn-primary" href="paginas/cadastro.html" style="margin-top:8px; align-self:flex-start;">Cadastrar um protótipo</a>
       </div>
 
       <div class="dash-mock">
         <div class="dash-topbar">
-          <div class="title">Protótipo — Quintal</div>
+          <div class="title">Protótipo Quintal</div>
           <div class="pill">ao vivo</div>
         </div>
         <div class="dash-cards">
@@ -231,7 +210,7 @@
           <div class="n">02</div>
           <h3>Vincule o protótipo</h3>
           <p>Informe o código do dispositivo para associá-lo à sua conta.</p>
-        </div>'
+        </div>
         <div class="step">
           <div class="n">03</div>
           <h3>Acompanhe os dados</h3>
@@ -248,14 +227,14 @@
         <div>
           <div class="eyebrow">Sobre o projeto</div>
           <h2 style="max-width:26ch;">Um projeto de iniciação científica, pensado para crescer</h2>
-          <p>Cortiça é desenvolvido por Gabriel, Vitória e Bryan, estudantes da Escola SESI Anísio Teixeira em Vitória da Conquista (BA), como parte da iniciação científica do GEMAT — Grupo de Pesquisa em Matemática e suas Tecnologias. O projeto une programação e biologia, e está alinhado aos Objetivos de Desenvolvimento Sustentável da ONU: saúde e bem-estar (ODS 3), cidades sustentáveis (ODS 11) e ação climática (ODS 13). Se os testes de campo confirmarem os resultados, a ideia é abrir o cadastro para mais protótipos e mais pessoas interessadas em saber o que respiram.</p>
+          <p>O projeto EcoBreath é desenvolvido por Gabriel e Vitória, estudantes da Escola SESI Anísio Teixeira em Vitória da Conquista (BA), como parte do grupo de iniciação científica GEMAT (Grupo de Pesquisa em Matemática e suas Tecnologias). O projeto une programação e biologia, e está alinhado aos Objetivos de Desenvolvimento Sustentável da ONU: saúde e bem-estar (ODS 3), cidades sustentáveis (ODS 11) e ação climática (ODS 13). Se os testes de campo confirmarem os resultados, a ideia é abrir o cadastro para mais protótipos e mais pessoas interessadas em saber o que respiram.</p>
         </div>
         <a class="btn btn-ghost" href="#" style="white-space:nowrap;">Falar com a equipe</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->'
+  <!-- CTA FINAL -->
   <section class="cta-section">
     <div class="wrap">
       <div class="eyebrow">Comece agora</div>
@@ -272,7 +251,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="fbrand">Cortiça</div>
+    <div class="fbrand">EcoBreath</div>
     <div class="fmeta">GEMAT · Escola SESI Anísio Teixeira · Vitória da Conquista, BA — 2026</div>
   </div>
 </footer>
