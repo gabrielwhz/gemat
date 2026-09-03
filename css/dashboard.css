@@ -2,11 +2,28 @@
    Reaproveita as variáveis de style.css e os componentes .dash-mock,
    .dash-cards etc. já definidos ali para os cards de protótipo. */
 
-.dashboard-nav{ justify-content:space-between; }
+.account-card{
+  display:flex; align-items:center; gap:18px;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px 24px; margin-bottom:28px;
+}
+.account-avatar{
+  width:48px; height:48px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  background:var(--forest); color:var(--paper);
+  font-family:'Fraunces', serif; font-size:1.2rem; font-weight:600;
+}
+.account-info{ flex:1; min-width:0; }
+.account-name{ font-weight:500; color:var(--forest-dark); }
+.account-email{ font-size:0.85rem; color:var(--ink-soft); }
+.account-card .btn{ padding:9px 18px; font-size:0.88rem; flex-shrink:0; }
 
-.dashboard-user{ display:flex; align-items:center; gap:14px; }
-.dashboard-user-email{ font-size:0.85rem; color:var(--ink-soft); }
-.dashboard-user .btn{ padding:8px 16px; font-size:0.85rem; }
+@media (max-width: 560px){
+  .account-card{ flex-wrap:wrap; }
+  .account-info{ order:1; width:calc(100% - 66px); }
+  .account-card .btn{ order:2; margin-left:auto; }
+}
 
 .dashboard-shell{ padding:56px 0 88px; }
 

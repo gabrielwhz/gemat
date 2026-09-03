@@ -39,7 +39,9 @@ function renderPrototipoCard(prototipo, leitura) {
 
 async function loadDashboard() {
   const welcomeTitle = document.getElementById('welcomeTitle');
-  const userEmailEl = document.getElementById('userEmail');
+  const accountAvatar = document.getElementById('accountAvatar');
+  const accountName = document.getElementById('accountName');
+  const accountEmail = document.getElementById('accountEmail');
   const logoutBtn = document.getElementById('logoutBtn');
   const prototiposList = document.getElementById('prototiposList');
   const emptyState = document.getElementById('emptyState');
@@ -54,11 +56,14 @@ async function loadDashboard() {
   }
 
   const user = session.user;
-  const fullName = user.user_metadata && user.user_metadata.full_name;
-  const firstName = (fullName || user.email).split(' ')[0];
+  const fullName = (user.user_metadata && user.user_metadata.full_name) || '';
+  const displayName = fullName || user.email;
+  const firstName = displayName.split(' ')[0];
 
   welcomeTitle.textContent = 'Olá, ' + firstName;
-  if (userEmailEl) userEmailEl.textContent = user.email;
+  accountName.textContent = displayName;
+  accountEmail.textContent = user.email;
+  accountAvatar.textContent = displayName.trim().charAt(0).toUpperCase();
 
   // 2. Botão de sair
   if (logoutBtn) {

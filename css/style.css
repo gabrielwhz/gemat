@@ -74,6 +74,7 @@
     color:var(--forest-dark); text-decoration:none;
   }
   .brand svg{ width:26px; height:26px; }
+  .brand-icon{ width:28px; height:auto; }
 
   .nav-links{ display:flex; align-items:center; gap:32px; }
   .nav-links a{ text-decoration:none; font-size:0.95rem; color:var(--ink); }
@@ -122,13 +123,7 @@
   .hero-actions{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
 
   .hero-art{ position:relative; display:flex; align-items:center; justify-content:center; }
-  .hero-art svg{ width:100%; height:auto; max-width:420px; }
-
-  .blob-anim{ animation:drift 9s ease-in-out infinite; transform-origin:center; }
-  @keyframes drift{
-    0%,100%{ transform:translateY(0) rotate(0deg); }
-    50%{ transform:translateY(-8px) rotate(1.5deg); }
-  }
+  .hero-logo{ width:100%; max-width:420px; height:auto; }
 
   /* ---------- section shell ---------- */
   section{ padding:88px 0; scroll-margin-top:88px; }
@@ -241,6 +236,9 @@
     .hero .wrap, .two-col, .device-grid{ grid-template-columns:1fr; }
     .hero-art{ order:-1; }
     .dash-cards{ grid-template-columns:repeat(2,1fr); }
-    .steps{ grid-template-columns:1fr; }
     .about-box{ grid-template-columns:1fr; text-align:left; }
+  }
+
+  @media (max-width: 640px){
+    .steps{ grid-template-columns:1fr; }
   }
