@@ -1,0 +1,44 @@
+/* Estilos específicos da central (dashboard.html).
+   Reaproveita as variáveis de style.css e os componentes .dash-mock,
+   .dash-cards etc. já definidos ali para os cards de protótipo. */
+
+.dashboard-nav{ justify-content:space-between; }
+
+.dashboard-user{ display:flex; align-items:center; gap:14px; }
+.dashboard-user-email{ font-size:0.85rem; color:var(--ink-soft); }
+.dashboard-user .btn{ padding:8px 16px; font-size:0.85rem; }
+
+.dashboard-shell{ padding:56px 0 88px; }
+
+.dashboard-head{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:24px; margin-bottom:36px; flex-wrap:wrap;
+}
+.dashboard-head h1{ font-size:1.9rem; margin:0; }
+
+.prototipos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+  gap:24px;
+}
+
+.dash-footer-code{
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--line);
+  font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink-soft);
+}
+
+.dash-topbar .pill.pill-muted{
+  color:var(--ink-soft); border-color:var(--line);
+}
+
+.empty-state{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:48px 32px; text-align:center;
+}
+.empty-state p{ margin:0 auto 18px; max-width:44ch; }
+
+.dash-error{ color:#8a3620; }
+
+@media (max-width: 640px){
+  .dashboard-head{ flex-direction:column; align-items:flex-start; }
+}
