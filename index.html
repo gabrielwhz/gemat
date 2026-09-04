@@ -27,8 +27,29 @@
       <a href="#dispositivo">O protótipo</a>
       <a href="#central">A central</a>
       <a href="#sobre">Sobre</a>
-      <a class="btn btn-ghost" href="paginas/login.html" style="margin-left:8px;">Entrar</a>
-      <a class="btn btn-primary" href="paginas/cadastro.html">Criar conta</a>
+
+      <div id="navAuthButtons" style="display:contents;">
+        <a class="btn btn-ghost" href="paginas/login.html" style="margin-left:8px;">Entrar</a>
+        <a class="btn btn-primary" href="paginas/cadastro.html">Criar conta</a>
+      </div>
+
+      <div class="user-menu" id="navUserMenu" style="display:none;">
+        <button class="user-menu-trigger" id="navUserMenuTrigger" aria-haspopup="true" aria-expanded="false">
+          <span class="user-menu-avatar" id="navAccountAvatar">?</span>
+          <span class="user-menu-name" id="navAccountFirstName"></span>
+          <svg class="user-menu-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="user-menu-dropdown" id="navUserMenuDropdown">
+          <div class="user-menu-header">
+            <div class="account-name" id="navAccountName"></div>
+            <div class="account-email" id="navAccountEmail"></div>
+          </div>
+          <a class="btn btn-primary user-menu-cta" href="paginas/dashboard.html">Ir para a sua central</a>
+          <button class="user-menu-logout" id="navLogoutBtn">Sair da conta</button>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -256,8 +277,11 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
 <script src="js/transitions.js"></script>
 <script src="js/main.js"></script>
+<script src="js/nav-auth.js"></script>
 
 </body>
 </html>
