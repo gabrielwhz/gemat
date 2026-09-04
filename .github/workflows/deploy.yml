@@ -1,0 +1,45 @@
+name: Deploy EcoBreath para o GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      # Gera js/supabase-client.js real a partir do modelo,
+      # substituindo os placeholders pelos Secrets do repositório.
+      # Esse arquivo gerado NUNCA é commitado — só existe durante o deploy.
+      - name: Gerar supabase-client.js com os Secrets
+        run: |
+          sed "s#__SUPABASE_URL__#${{ secrets.SUPABASE_URL }}#g; s#__SUPABASE_KEY__#${{ secrets.SUPABASE_KEY }}#g" \
+            js/supabase-client.template.js > js/supabase-client.js
+
+      - name: Configurar o GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empacotar os arquivos do site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

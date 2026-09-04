@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Definir nova senha — EcoBreath</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+<noscript><style>body{opacity:1;}</style></noscript>
+</head>
+<body>
+
+<header class="auth-header">
+  <nav class="wrap">
+    <a class="brand" href="../index.html#top">
+      <img src="../assets/icon-ecobreath.svg" alt="Ícone EcoBreath" class="brand-icon">
+      EcoBreath
+    </a>
+  </nav>
+</header>
+
+<main class="auth-shell">
+  <div class="auth-card">
+    <div class="eyebrow">Central de dados</div>
+    <h1>Defina uma nova senha</h1>
+    <p class="auth-lede" id="redefinirLede">Digite sua nova senha abaixo.</p>
+
+    <form id="redefinirForm" novalidate>
+      <div class="field" id="novaSenhaField">
+        <label for="novaSenha">Nova senha</label>
+        <div class="password-wrap">
+          <input type="password" id="novaSenha" name="novaSenha" autocomplete="new-password" placeholder="••••••••">
+          <button type="button" class="password-toggle" id="novaSenhaToggle">mostrar</button>
+        </div>
+        <div class="field-hint">Mínimo de 6 caracteres.</div>
+        <div class="field-error">A senha precisa ter pelo menos 6 caracteres.</div>
+      </div>
+
+      <div class="field" id="confirmarSenhaField">
+        <label for="confirmarSenha">Confirmar nova senha</label>
+        <input type="password" id="confirmarSenha" name="confirmarSenha" autocomplete="new-password" placeholder="••••••••">
+        <div class="field-error">As senhas não coincidem.</div>
+      </div>
+
+      <button type="submit" class="auth-submit">Salvar nova senha</button>
+
+      <div class="auth-form-message" id="redefinirMessage"></div>
+    </form>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/transitions.js"></script>
+<script src="../js/redefinir-senha.js"></script>
+</body>
+</html>

@@ -186,5 +186,82 @@ function initSignupForm() {
   });
 }
 
+/* ---------- ALTERNAR ENTRE SENHA / LINK MÁGICO ---------- */
+function initModeToggle() {
+  const passwordBtn = document.getElementById('modePasswordBtn');
+  const magicBtn = document.getElementById('modeMagicBtn');
+  const loginForm = document.getElementById('loginForm');
+  const magicForm = document.getElementById('magicLinkForm');
+  if (!passwordBtn || !magicBtn || !loginForm || !magicForm) return;
+
+  passwordBtn.addEventListener('click', () => {
+    passwordBtn.classList.add('active');
+    passwordBtn.setAttribute('aria-selected', 'true');
+    magicBtn.classList.remove('active');
+    magicBtn.setAttribute('aria-selected', 'false');
+    loginForm.style.display = '';
+    magicForm.style.display = 'none';
+  });
+
+  magicBtn.addEventListener('click', () => {
+    magicBtn.classList.add('active');
+    magicBtn.setAttribute('aria-selected', 'true');
+    passwordBtn.classList.remove('active');
+    passwordBtn.setAttribute('aria-selected', 'false');
+    loginForm.style.display = 'none';
+    magicForm.style.display = '';
+  });
+}
+
+/* ---------- LINK MÁGICO ---------- */
+function initMagicLinkForm() {
+  const form = document.getElementById('magicLinkForm');
+  if (!form) return;
+
+  const emailField = document.getElementById('magicEmailField');
+  const emailInput = document.getElementById('magicEmail');
+  const message = document.getElementById('magicMessage');
+  const submitBtn = form.querySelector('.auth-submit');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearFieldError(emailField);
+
+    if (!isValidEmail(emailInput.value.trim())) {
+      setFieldError(emailField, 'Digite um e-mail válido.');
+      return;
+    }
+
+    setLoading(submitBtn, true, 'Enviar link mágico', 'Enviando...');
+
+    try {
+      const redirectTo = window.location.origin + window.location.pathname.replace('login.html', 'dashboard.html');
+      const { error } = await supabaseClient.auth.signInWithOtp({
+        email: emailInput.value.trim(),
+        options: { emailRedirectTo: redirectTo }
+      });
+
+      if (error) {
+        showMessage(message, traduzErroSupabase(error), 'error');
+        return;
+      }
+
+      showMessage(message, 'Link enviado! Verifique seu e-mail para entrar (confira o spam também).', 'info');
+      form.reset();
+    } catch (err) {
+      console.error('Erro inesperado no link mágico:', err);
+      showMessage(
+        message,
+        'Não foi possível conectar ao Supabase. Confira o console (F12).',
+        'error'
+      );
+    } finally {
+      setLoading(submitBtn, false, 'Enviar link mágico', 'Enviando...');
+    }
+  });
+}
+
 initLoginForm();
 initSignupForm();
+initModeToggle();
+initMagicLinkForm();

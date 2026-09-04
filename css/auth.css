@@ -37,6 +37,18 @@
 }
 .auth-card .auth-lede{ color:var(--ink-soft); font-size:0.95rem; margin-bottom:28px; }
 
+.auth-mode-toggle{
+  display:flex; gap:4px; margin-bottom:24px;
+  border:1px solid var(--line); border-radius:20px; padding:3px;
+}
+.auth-mode-btn{
+  flex:1; border:none; background:none; cursor:pointer;
+  padding:8px 12px; border-radius:16px;
+  font-family:'Work Sans', sans-serif; font-size:0.85rem; color:var(--ink-soft);
+  transition:background .15s ease, color .15s ease;
+}
+.auth-mode-btn.active{ background:var(--forest); color:var(--paper); }
+
 .field{ margin-bottom:18px; }
 .field label{
   display:block; font-size:0.85rem; font-weight:500; color:var(--ink);
