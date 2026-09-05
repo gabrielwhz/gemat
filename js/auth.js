@@ -232,7 +232,7 @@ function initMagicLinkForm() {
       return;
     }
 
-    setLoading(submitBtn, true, 'Enviar link mágico', 'Enviando...');
+    setLoading(submitBtn, true, 'Enviar link de uso único', 'Enviando...');
 
     try {
       const redirectTo = window.location.origin + window.location.pathname.replace('login.html', 'dashboard.html');
@@ -249,14 +249,14 @@ function initMagicLinkForm() {
       showMessage(message, 'Link enviado! Verifique seu e-mail para entrar (confira o spam também).', 'info');
       form.reset();
     } catch (err) {
-      console.error('Erro inesperado no link mágico:', err);
+      console.error('Erro inesperado no link de uso único:', err);
       showMessage(
         message,
         'Não foi possível conectar ao Supabase. Confira o console (F12).',
         'error'
       );
     } finally {
-      setLoading(submitBtn, false, 'Enviar link mágico', 'Enviando...');
+      setLoading(submitBtn, false, 'Enviar link de uso único', 'Enviando...');
     }
   });
 }

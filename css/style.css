@@ -117,7 +117,7 @@
   .user-menu-avatar{
     width:30px; height:30px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
-    border-radius:50%;
+    border-radius:50%; overflow:hidden;
     background:var(--forest); color:var(--paper);
     font-family:'Fraunces', serif; font-size:0.85rem; font-weight:600;
   }

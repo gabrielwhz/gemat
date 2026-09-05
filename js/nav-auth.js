@@ -24,7 +24,13 @@
   document.getElementById('navAccountFirstName').textContent = firstName;
   document.getElementById('navAccountName').textContent = displayName;
   document.getElementById('navAccountEmail').textContent = user.email;
-  document.getElementById('navAccountAvatar').textContent = displayName.trim().charAt(0).toUpperCase();
+  const avatarEl = document.getElementById('navAccountAvatar');
+  const avatarUrl = user.user_metadata && user.user_metadata.avatar_url;
+  if (avatarUrl) {
+    avatarEl.innerHTML = '<img src="' + avatarUrl + '" alt="" style="width:100%;height:100%;object-fit:cover;">';
+  } else {
+    avatarEl.textContent = displayName.trim().charAt(0).toUpperCase();
+  }
 
   authButtons.style.display = 'none';
   userMenu.style.display = '';

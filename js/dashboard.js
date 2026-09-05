@@ -93,7 +93,12 @@ async function loadDashboard() {
   accountFirstName.textContent = firstName;
   accountName.textContent = displayName;
   accountEmail.textContent = user.email;
-  accountAvatar.textContent = displayName.trim().charAt(0).toUpperCase();
+  const avatarUrl = user.user_metadata && user.user_metadata.avatar_url;
+  if (avatarUrl) {
+    accountAvatar.innerHTML = '<img src="' + avatarUrl + '" alt="" style="width:100%;height:100%;object-fit:cover;">';
+  } else {
+    accountAvatar.textContent = displayName.trim().charAt(0).toUpperCase();
+  }
 
   // 2. Botão de sair
   if (logoutBtn) {
