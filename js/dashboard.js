@@ -32,9 +32,67 @@ function renderPrototipoCard(prototipo, leitura) {
       <div class="dash-card"><div class="k">SO₂</div><div class="v mono">${fmtLeitura(leitura, 'so2', ' ppb')}</div></div>
       <div class="dash-card"><div class="k">NOₓ</div><div class="v mono">${fmtLeitura(leitura, 'nox', ' ppb')}</div></div>
     </div>
-    <div class="dash-footer-code">Código do dispositivo: ${escapeHtml(prototipo.codigo_dispositivo)}</div>
+    <div class="dash-footer-row">
+      <div class="dash-footer-code">Código: ${escapeHtml(prototipo.codigo_dispositivo)}</div>
+      <button type="button" class="dash-remove-btn" data-id="${prototipo.id}" data-apelido="${escapeHtml(prototipo.apelido)}">Remover</button>
+    </div>
   `;
+
+  const removeBtn = card.querySelector('.dash-remove-btn');
+  removeBtn.addEventListener('click', () => removerPrototipo(prototipo.id, prototipo.apelido, card, removeBtn));
+
   return card;
+}
+
+async function removerPrototipo(id, apelido, cardEl, buttonEl) {
+  const confirmar = window.confirm('Remover "' + apelido + '"? Isso também apaga todas as leituras dele. Essa ação não pode ser desfeita.');
+  if (!confirmar) return;
+
+  buttonEl.disabled = true;
+  buttonEl.textContent = 'Removendo...';
+
+  try {
+    // Apaga as leituras primeiro (a chave estrangeira exige isso antes do protótipo)
+    const { error: leiturasError } = await supabaseClient
+      .from('leituras')
+      .delete()
+      .eq('prototipo_id', id);
+
+    if (leiturasError) {
+      console.error(leiturasError);
+      alert('Não foi possível remover as leituras desse protótipo. Tente novamente.');
+      buttonEl.disabled = false;
+      buttonEl.textContent = 'Remover';
+      return;
+    }
+
+    const { error: prototipoError } = await supabaseClient
+      .from('prototipos')
+      .delete()
+      .eq('id', id);
+
+    if (prototipoError) {
+      console.error(prototipoError);
+      alert('Não foi possível remover o protótipo. Tente novamente.');
+      buttonEl.disabled = false;
+      buttonEl.textContent = 'Remover';
+      return;
+    }
+
+    cardEl.remove();
+
+    // Se não sobrar nenhum protótipo, mostra o estado vazio
+    const prototiposList = document.getElementById('prototiposList');
+    const emptyState = document.getElementById('emptyState');
+    if (prototiposList && prototiposList.children.length === 0 && emptyState) {
+      emptyState.style.display = 'block';
+    }
+  } catch (err) {
+    console.error('Erro inesperado ao remover protótipo:', err);
+    alert('Erro de conexão. Confira o console (F12).');
+    buttonEl.disabled = false;
+    buttonEl.textContent = 'Remover';
+  }
 }
 
 function setupUserMenu() {

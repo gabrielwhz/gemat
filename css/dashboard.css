@@ -19,10 +19,21 @@
   gap:24px;
 }
 
-.dash-footer-code{
+.dash-footer-row{
   margin-top:14px; padding-top:14px; border-top:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.dash-footer-code{
   font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink-soft);
 }
+.dash-remove-btn{
+  background:none; border:none; cursor:pointer; flex-shrink:0;
+  font-family:'Work Sans', sans-serif; font-size:0.8rem; color:#8a3620;
+  padding:4px 8px; border-radius:var(--radius);
+  transition:background .15s ease;
+}
+.dash-remove-btn:hover{ background:#f6e6e1; }
+.dash-remove-btn:disabled{ opacity:0.6; cursor:not-allowed; }
 
 .dash-topbar .pill.pill-muted{
   color:var(--ink-soft); border-color:var(--line);
