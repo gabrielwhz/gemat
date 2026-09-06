@@ -15,17 +15,28 @@ function fmtLeitura(leitura, key, unit) {
   return leitura[key] + unit;
 }
 
+function fmtStatusAr(leitura) {
+  if (!leitura || leitura.ar_poluido === null || leitura.ar_poluido === undefined) {
+    return { texto: 'Status do ar indisponível', classe: 'status-muted' };
+  }
+  return leitura.ar_poluido
+    ? { texto: 'Ar poluído', classe: 'status-poluido' }
+    : { texto: 'Ar estável', classe: 'status-estavel' };
+}
+
 function renderPrototipoCard(prototipo, leitura) {
   const card = document.createElement('div');
   card.className = 'dash-mock';
 
   const hasLeitura = !!leitura;
+  const status = fmtStatusAr(leitura);
 
   card.innerHTML = `
     <div class="dash-topbar">
       <div class="title">${escapeHtml(prototipo.apelido)}</div>
       <div class="pill${hasLeitura ? '' : ' pill-muted'}">${hasLeitura ? 'com dados' : 'sem leituras ainda'}</div>
     </div>
+    <div class="dash-status ${status.classe}">${status.texto}</div>
     <div class="dash-cards">
       <div class="dash-card"><div class="k">PM2.5</div><div class="v mono">${fmtLeitura(leitura, 'pm25', ' µg/m³')}</div></div>
       <div class="dash-card"><div class="k">PM10</div><div class="v mono">${fmtLeitura(leitura, 'pm10', ' µg/m³')}</div></div>
