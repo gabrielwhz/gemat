@@ -1,0 +1,7 @@
+# Arquivo com a URL/chave reais do Supabase — só existe localmente
+# ou é gerado pelo GitHub Actions no deploy. Nunca deve ir pro git.
+js/supabase-client.js
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
